@@ -12,3 +12,17 @@ header {
   text-align:center;
   line-height: 70px;
 }
+
+.layout {
+  padding-top: 70px;
+}
+
+.container {
+  margin-top: 100px;
+  text-align:center;
+  position: relative;
+}
+
+.select {
+  margin-top: 100px;
+}

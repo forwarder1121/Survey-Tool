@@ -1,13 +1,12 @@
 import Header from "./layouts/Header";
+import Container from "./layouts/Container";
 import Menu from "./layouts/Menu";
 
 function Layout() {
   return (
-    <div>
+    <div className="layout">
         <Header />
-        <main>
-          <h2>This is Layout</h2>
-        </main>
+        <Container />
     </div>
   );
 }
