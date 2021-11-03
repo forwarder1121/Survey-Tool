@@ -3,8 +3,7 @@ import './App.css';
 
 function App() {
   return (
-    <div className="gray-background">
-      <img src={logo} lat="logo" />
+    <div>
       <h2>Let's develop survey-tool system!</h2>
     </div>
   );
