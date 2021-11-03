@@ -1,11 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
+import Layout from './components/Layout';
 
 function App() {
   return (
-    <div>
-      <h2>Let's develop survey-tool system!</h2>
-    </div>
+    <Layout>
+    </Layout>
   );
 }
 
