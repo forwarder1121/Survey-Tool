@@ -2,10 +2,10 @@ import '../../App.css';
 import { Button } from "@material-ui/core";
 
 
-function Container() {
+function Content() {
 
     return (
-        <div className="container">
+        <div className="content">
             <h1> 1. 귀하의 '성별'은 무엇입니까?</h1>
             <div className="select">
                 <Button variant="outlined" color="secondary" 
@@ -20,4 +20,4 @@ function Container() {
         </div>
     );
 }
-export default Container;
+export default Content;

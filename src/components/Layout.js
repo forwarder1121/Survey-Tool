@@ -1,12 +1,15 @@
 import Header from "./layouts/Header";
-import Container from "./layouts/Container";
+import Content from "./layouts/Content";
 import Menu from "./layouts/Menu";
 
 function Layout() {
   return (
     <div className="layout">
         <Header />
-        <Container />
+        <div className="wrapper">
+          <Menu />
+          <Content />
+        </div>
     </div>
   );
 }
