@@ -3,8 +3,8 @@ import { Home } from "@material-ui/icons";
 function Menu() {
     return (
         <div className="menu-wrapper">
-            <div className="workspace">Workspace</div>
-            <hr />
+            <div className="workspaces">Workspaces</div>
+            <hr/>
             <div className="menu">
                 <ul>
                     <li><Home />My workspace</li>

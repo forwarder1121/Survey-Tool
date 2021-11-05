@@ -13,16 +13,6 @@ header {
   padding-top: 61px;
 }
 
-.content {
-  height: 100%;
-  position: relative;
-  text-align: center;
-  position: relative;
-}
-
-.wrapper {
-  height: 100%;
-}
 .menu-wrapper {
   height: 100%;
   position: absolute;
@@ -63,8 +53,14 @@ header {
   font-family: 'Noto Sans KR';
   padding: 0 0 0 50px; /* 아이콘과 텍스트 사이 여백 */
 }
-.workspace {
+.workspaces {
   margin: 15px 20px;
   font-size: 20px;
   color: rgb(120, 120, 120);
+}
+
+.form-box {
+  background-color: darkgray;
+  width: 125px;
+  height: 150px;
 }
