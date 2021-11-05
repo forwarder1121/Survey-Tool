@@ -4,7 +4,7 @@ function FormPage() {
   return (
     <div>
         <Layout />
-        dfafafs
+         <h1> props 설정 </h1>
     </div>
   );
 }
