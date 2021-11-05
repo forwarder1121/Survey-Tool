@@ -8,7 +8,7 @@ function Content() {
     return (
         <Container>
             <h4 style={{color:"rgb(120, 120, 120)"}}>Workspace</h4>
-            <Link to="/test">
+            <Link to="/formPage">
                 <FormBox />
             </Link>
         </Container>
