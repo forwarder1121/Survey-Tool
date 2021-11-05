@@ -5,17 +5,18 @@ import { Grid } from "@material-ui/core";
 
 function Layout() {
   return (
-    <div className="layout">
+    <div>
         <Header />
-        <hr/>
-        <Grid container spacing={1}>
-          <Grid item xs={12} sm={3}>
-            <Menu />
+        <div className="layout">
+          <Grid container spacing={1}>
+            <Grid item xs={12} sm={3}>
+              <Menu />
+            </Grid>
+            <Grid item xs={12} sm={9}>
+              <Content />
+            </Grid>
           </Grid>
-          <Grid item xs={12} sm={9}>
-            <Content />
-          </Grid>
-        </Grid>
+        </div>
     </div>
   );
 }

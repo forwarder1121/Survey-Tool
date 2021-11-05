@@ -5,33 +5,33 @@ header {
   width: 100%;
   text-align:center;
   line-height: 60px;
-  color: rgb(117, 117, 117);
+  color: rgb(120, 120, 120);
+  border: 1px solid rgb(230, 230, 230);
 }
 
 .layout {
-  padding-top: 60px;
-  height: 100%;
+  padding-top: 61px;
 }
 
 .content {
-  margin-top: 100px;
-  text-align:center;
-  position: relative;
   height: 100%;
-}
-
-.select {
-  margin-top: 100px;
+  position: relative;
+  text-align: center;
+  position: relative;
 }
 
 .wrapper {
   height: 100%;
 }
-
+.menu-wrapper {
+  height: 100%;
+  position: absolute;
+  width: 25%;
+  border: 1px solid rgb(230, 230, 230);
+}
 .menu {
   display: block;
   height: 100%;
-  background-color: rgb(92, 91, 91);
   color: #fff;
   padding: 10px;
   box-sizing: border-box;
@@ -46,15 +46,14 @@ header {
   height: 25px;
   padding: 8px;
   cursor: pointer;
-  color: rgb(187, 185, 185);
+  color: rgb(143, 143, 143);
   text-decoration: none;
 }
-
 .menu a:hover {
   color: #000;
 }
 .menu ul li:hover, .menu > label:hover {
-  background-color: #fff;
+  background-color: rgba(206, 205, 205, 0.74);
   color: #000;
   border-radius: 10px;
 }
@@ -63,4 +62,9 @@ header {
   font-size: 1em;
   font-family: 'Noto Sans KR';
   padding: 0 0 0 50px; /* 아이콘과 텍스트 사이 여백 */
+}
+.workspace {
+  margin: 15px 20px;
+  font-size: 20px;
+  color: rgb(120, 120, 120);
 }
