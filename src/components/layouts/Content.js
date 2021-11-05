@@ -1,11 +1,11 @@
 import '../../App.css';
-import { Button } from "@material-ui/core";
+import { Button, Container } from "@material-ui/core";
 
 
 function Content() {
 
     return (
-        <div className="content">
+        <Container maxWidth="sm">
             <h1> 1. 귀하의 '성별'은 무엇입니까?</h1>
             <div className="select">
                 <Button variant="outlined" color="secondary" 
@@ -17,7 +17,7 @@ function Content() {
                     여자
                 </Button>
             </div>
-        </div>
+        </Container>
     );
 }
 export default Content;
