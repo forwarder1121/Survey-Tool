@@ -13,12 +13,6 @@ header {
   padding-top: 61px;
 }
 
-.menu-wrapper {
-  height: 100%;
-  position: absolute;
-  width: 25%;
-  border: 1px solid rgb(230, 230, 230);
-}
 .menu {
   display: block;
   height: 100%;
@@ -53,10 +47,24 @@ header {
   font-family: 'Noto Sans KR';
   padding: 0 0 0 50px; /* 아이콘과 텍스트 사이 여백 */
 }
-.workspaces {
-  margin: 15px 20px;
+.menu-wrapper {
+  height: 100%;
+  position: absolute;
+  width: 25%;
+  border: 1px solid rgb(230, 230, 230);
+}
+.menu-title {
+  margin: 35px 20px;
   font-size: 20px;
-  color: rgb(120, 120, 120);
+  color: rgb(80, 80, 80);
+  font-weight: 700;
+}
+.menu-userInfo {
+  margin: 15px 20px;
+}
+.user-email {
+  font-size: 12px;
+  color: rgb(180, 180, 180);
 }
 
 .form-box {
