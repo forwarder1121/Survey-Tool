@@ -1,4 +1,4 @@
-import { Home } from "@material-ui/icons";
+import { Home, CreateNewFolder } from "@material-ui/icons";
 
 function Menu() {
     return (
@@ -7,6 +7,13 @@ function Menu() {
             <div className="menu-userInfo">
                 <div style={{ marginBottom: "5px" }}>사용자 이름</div>
                 <div className="user-email">email_ID@gmail.com</div>
+            </div>
+            <div className="menu-project">
+                <span>Project </span>
+                <span style={{ color: "gray" }}>3</span>
+                <div style={{ float: "right" }}>
+                <CreateNewFolder color="action" />
+                </div>
             </div>
             <div className="menu">
                 <ul>
