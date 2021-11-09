@@ -17,6 +17,11 @@ function Menu() {
             </div>
             <div className="menu">
                 <ul>
+                    <li>기본 프로젝트</li>
+                </ul>
+            </div>
+            <div className="menu">
+                <ul>
                     <li><Home />My workspace</li>
                     <li>3</li>
                     <li>4</li>
