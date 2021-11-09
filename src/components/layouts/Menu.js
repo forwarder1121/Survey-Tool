@@ -1,4 +1,4 @@
-import { Home, CreateNewFolder } from "@material-ui/icons";
+import { CreateNewFolderOutlined, DeleteOutlineOutlined, FeedbackOutlined, HelpOutlineOutlined, UpdateOutlined } from "@material-ui/icons";
 
 function Menu() {
     return (
@@ -9,24 +9,31 @@ function Menu() {
                 <div className="user-email">email_ID@gmail.com</div>
             </div>
             <div className="menu-project">
-                <span>Project </span>
-                <span style={{ color: "gray" }}>3</span>
-                <div style={{ float: "right" }}>
-                <CreateNewFolder color="action" />
+                <div style={{ float: "left" }}>Project <span style={{ color: "gray" }}>3</span></div>
+                <div className="icon-right">
+                    <CreateNewFolderOutlined color="action" fontSize="small" />
                 </div>
             </div>
             <div className="menu">
                 <ul>
-                    <li>기본 프로젝트</li>
+                    <li> 기본 프로젝트</li>
                 </ul>
             </div>
             <div className="menu">
-                <ul>
-                    <li><Home />My workspace</li>
-                    <li>3</li>
-                    <li>4</li>
-                    <li>5</li>
-                    <li>6</li>
+                <ul className="menu-bottom">
+                    <li>
+                        삭제된 문서
+                        <div className="icon-right"><DeleteOutlineOutlined color="action" fontSize="small" /></div>
+                    </li>
+                    <li>문의 및 피드백
+                        <div className="icon-right"><FeedbackOutlined color="action" fontSize="small" /></div>
+                    </li>
+                    <li>UI form 사용법
+                        <div className="icon-right"><HelpOutlineOutlined color="action" fontSize="small" /></div>
+                    </li>
+                    <li>업데이트 노트
+                        <div className="icon-right"><UpdateOutlined color="action" fontSize="small" /></div>
+                    </li>
                 </ul>
             </div>
         </div>
