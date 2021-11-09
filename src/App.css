@@ -20,6 +20,11 @@ hr {
   float: right;
 }
 
+.bold-title {
+  margin: 20px 20px;
+  padding-bottom: 20px;
+  font-weight: 500;
+}
 
 .menu-wrapper {
   height: 100%;
@@ -71,16 +76,19 @@ hr {
   font-size: 12px;
   color: rgb(180, 180, 180);
 }
-.menu-project {
-  margin: 20px 20px;
-  padding-bottom: 20px;
-  font-weight: 500;
-}
 .menu-bottom li {
   color: rgb(80, 80, 80);
 }
 
+.form-list {
+  margin: 20px 20px;
+  background-color: darkgray;
+  display: flex;
+  flex-flow : row wrap;
+  flex : auto;
+}
 .form-box {
+  background-color: gray;
   width: 120px;
   height: 150px;
   border-radius: 5px;

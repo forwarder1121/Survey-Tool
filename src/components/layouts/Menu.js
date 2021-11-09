@@ -8,7 +8,7 @@ function Menu() {
                 <div style={{ marginBottom: "5px" }}>사용자 이름</div>
                 <div className="user-email">email_ID@gmail.com</div>
             </div>
-            <div className="menu-project">
+            <div className="bold-title">
                 <div style={{ float: "left" }}>Project <span style={{ color: "gray" }}>3</span></div>
                 <div className="icon-right">
                     <CreateNewFolderOutlined color="action" fontSize="small" />

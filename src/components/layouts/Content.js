@@ -21,9 +21,15 @@ function Content() {
                     </div>
                 </div>
                 <hr />
-                <Link to="/formPage">
-                    <FormBox />
-                </Link>
+                <div className="bold-title">Forms <span style={{ color: "gray" }}>0</span></div>
+                <div className="form-list">
+                    <Link to="/formPage">
+                        <FormBox />
+                    </Link>
+                    <Link to="/formPage">
+                        <FormBox />
+                    </Link>
+                </div>
             </Container>
         </div>
     );
