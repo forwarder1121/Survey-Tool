@@ -7,6 +7,11 @@ header {
   color: rgb(120, 120, 120);
   border: 1px solid rgb(230, 230, 230);
 }
+
+hr {
+  border: 0.1px solid rgb(230, 230, 230);
+}
+
 .header-search {
   margin: 10px 100px;
 }
@@ -85,4 +90,15 @@ header {
   color: rgb(80, 80, 80);
   font-weight: bold;
   margin: 10px 10px;
+}
+
+.content {
+  margin: 10px 30px;
+}
+.content div {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.content-header {
+  color: rgb(120, 120, 120);
 }
