@@ -1,5 +1,6 @@
 import '../../App.css';
 import { Container, Button } from "@material-ui/core";
+import NewForm from '../NewForm';
 import FormBox from '../FormBox';
 import { Link } from 'react-router-dom';
 import { MoreHoriz } from "@material-ui/icons";
@@ -23,6 +24,7 @@ function Content() {
                 <hr />
                 <div className="bold-title">Forms <span style={{ color: "gray" }}>0</span></div>
                 <div className="form-list">
+                    <NewForm />
                     <FormBox />
                     <Link to="/formPage">
                         <FormBox />
