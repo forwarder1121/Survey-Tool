@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import { MoreHoriz } from "@material-ui/icons";
 
 function Content() {
-
     return (
         <div className="content">
             <Container>

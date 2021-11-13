@@ -1,6 +1,6 @@
-import Header from "./layouts/Header";
-import Content from "./layouts/Content";
-import Menu from "./layouts/Menu";
+import Header from "./home/Header";
+import Content from "./home/Content";
+import Menu from "./home/Menu";
 import { Grid } from "@material-ui/core";
 
 function Home() {
