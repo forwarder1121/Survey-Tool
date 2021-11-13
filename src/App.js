@@ -8,7 +8,7 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<Home />}/>
-        <Route path="/form/create" element={<FormPage />}/>
+        <Route exact path="/form/:id" element={<FormPage />}/>
       </Routes>
     </div>
   );
