@@ -22,6 +22,10 @@ header {
   display: flex;
   justify-content: center;
 }
+.header-menu-element {
+  padding: 0px 20px;
+  background-color: darkgray;
+}
 
 hr {
   border: 0.1px solid rgb(230, 230, 230);

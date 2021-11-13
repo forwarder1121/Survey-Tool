@@ -1,14 +1,14 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
-import FormPage from './components/FormPage'
+import CreateForm from './pages/CreateForm'
 
 function App() {
   return (
     <div>
       <Routes>
         <Route path="/" element={<Home />}/>
-        <Route exact path="/form/:id" element={<FormPage />}/>
+        <Route path="/form/:action" element={<CreateForm />}/>
       </Routes>
     </div>
   );

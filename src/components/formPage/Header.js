@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Grid } from "@material-ui/core";
 import { ArrowBack, ArrowForward } from "@material-ui/icons";
-import MenuElement from "./MenuElement"
+
 function Header() {
     return (
         <header>
@@ -18,13 +18,17 @@ function Header() {
                 <Grid item xs={12} sm={9}>
                     <div className="header-menu">
                         <Link to="/form/create">
-                            <MenuElement name="제작/설계" />
+                            <div className="header-menu-element">제작/설계</div>
                         </Link>
                         <Link to="/form/preview">
-                            <MenuElement name="미리보기" />
+                            <div className="header-menu-element">미리보기</div>
                         </Link>
-                        <MenuElement name="공유/배포" />
-                        <MenuElement name="결과확인" />
+                        <Link to="/form/share">
+                            <div className="header-menu-element">공유/배포</div>
+                        </Link>
+                        <Link to="/form/result">
+                            <div className="header-menu-element">결과확인</div>
+                        </Link>
                     </div>
                 </Grid>
             </Grid>
