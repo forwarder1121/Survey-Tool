@@ -24,11 +24,11 @@ function Content() {
                 <hr />
                 <div className="bold-title">Forms <span style={{ color: "gray" }}>0</span></div>
                 <div className="form-list">
-                    <NewForm />
-                    <FormBox />
                     <Link to="/formPage">
-                        <FormBox />
+                        <NewForm />
                     </Link>
+                    <FormBox />
+                    <FormBox />
                 </div>
             </Container>
         </div>
