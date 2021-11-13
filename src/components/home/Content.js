@@ -1,7 +1,7 @@
 import '../../App.css';
 import { Container, Button } from "@material-ui/core";
-import NewForm from '../NewForm';
-import FormBox from '../FormBox';
+import NewForm from '../home/NewForm';
+import FormBox from '../home/FormBox';
 import { Link } from 'react-router-dom';
 import { MoreHoriz } from "@material-ui/icons";
 

@@ -1,4 +1,4 @@
-import Header from "./home/Header";
+import SearchBar from "./home/SearchBar";
 import Content from "./home/Content";
 import Menu from "./home/Menu";
 import { Grid } from "@material-ui/core";
@@ -11,7 +11,7 @@ function Home() {
           <Menu />
         </Grid>
         <Grid item xs={12} sm={9}>
-          <Header />
+          <SearchBar />
           <Content />
         </Grid>
       </Grid>

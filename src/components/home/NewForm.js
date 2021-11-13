@@ -1,4 +1,4 @@
-import '../App.css';
+import '../../App.css';
 import { NoteAddOutlined } from "@material-ui/icons";
 
 function FormBox() {

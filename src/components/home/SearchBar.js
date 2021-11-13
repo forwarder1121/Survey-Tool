@@ -1,18 +1,18 @@
 import '../../App.css';
-import SearchBar from "material-ui-search-bar";
+import Search from "material-ui-search-bar";
 
-function Header() {
+function SearchBar() {
     return (
         <header>
             <div className="header-search">
-                <SearchBar 
+                <Search 
                     placeholder="제목 또는 내용을 검색하세요."
                 />
             </div>
         </header>
     );
 }
-export default Header;
+export default SearchBar;
 
 /* 
 <SearchBar
