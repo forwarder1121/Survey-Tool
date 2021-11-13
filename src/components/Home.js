@@ -7,10 +7,10 @@ function Home() {
   return (
     <div>
       <Grid container spacing={1}>
-        <Grid item xs={12} sm={3}>
+        <Grid item sm={2}>
           <Menu />
         </Grid>
-        <Grid item xs={12} sm={9}>
+        <Grid item sm={10}>
           <SearchBar />
           <Content />
         </Grid>
