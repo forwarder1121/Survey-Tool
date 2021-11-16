@@ -1,8 +1,8 @@
 import Header from '../components/formPage/Header';
 import { Grid } from "@material-ui/core";
 
-function CreateForm({match}) {
-  console.log(match);
+function CreateForm() {
+  //console.log();
   return (
     <div>
         <Header />

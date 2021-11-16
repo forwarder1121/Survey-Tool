@@ -1,6 +1,6 @@
-import SearchBar from "./home/SearchBar";
-import Content from "./home/Content";
-import Menu from "./home/Menu";
+import SearchBar from "../components/home/SearchBar";
+import Content from "../components/home/Content";
+import Menu from "../components/home/Menu";
 import { Grid } from "@material-ui/core";
 
 function Home() {
