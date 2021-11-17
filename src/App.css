@@ -17,14 +17,27 @@ header {
 .header-search {
   margin: 10px 80px;
 }
-.header-menu {
+.hor-menu {
   text-align: center;
   display: flex;
   justify-content: center;
 }
-.header-menu-element {
+.hor-menu-ele {
   padding: 0px 20px;
-  background-color: darkgray;
+}
+.hor-menu-ele-act {
+  padding: 0px 15px;
+  color: rgb(40, 40, 100);
+  border-bottom: 1px solid rgb(40, 40, 100);
+}
+.hor-menu-wrapper {
+  line-height: 50px;
+  font-size: 14px;
+  border-bottom: 1px solid rgb(120, 120, 120);
+}
+.hor-menu-ele-act2 {
+  color: rgb(40, 40, 100);
+  border-bottom: 1px solid rgb(40, 40, 100);
 }
 
 hr {
@@ -43,7 +56,6 @@ hr {
 
 .menu-wrapper {
   height: 100%;
-  position: absolute;
   border: 1px solid rgb(230, 230, 230);
 }
 .menu {
