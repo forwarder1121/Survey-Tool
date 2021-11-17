@@ -1,5 +1,5 @@
 import Header from '../components/formPage/Header'
-import { Grid, FormControl, Select, MenuItem, OutlinedInput } from "@material-ui/core"
+import { Grid, FormControl, Select, MenuItem, OutlinedInput, Button } from "@material-ui/core"
 import * as React from 'react';
 
 function CreateForm() {
@@ -73,12 +73,15 @@ function CreateForm() {
                 </div>
                 
                 <div className="new-page-draggable">
-                    hi
+                  <Button variant="contained" color="primary">새로운 페이지 추가</Button>
                 </div>
+
+
+
               </div>
             </Grid>
             <Grid item sm={10}>
-            content 영역
+              <div style={{ backgroundColor:"hotpink"}}>content 영역</div>
             </Grid>
         </Grid>
     </div>
