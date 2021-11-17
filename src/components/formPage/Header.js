@@ -29,7 +29,7 @@ function Header(props) {
                 </Grid>
                 <Grid item sm={2} style={{ textAlign:"right" }}>
                     <Button variant="contained" color="primary" size="small">회사정보</Button>
-                    <span style={{ padding: "0px 10px", position: "relative", top: "3px"}}>
+                    <span style={{ padding: "0px 10px", position: "relative", top: "13px"}}>
                         <AccountCircle  fontSize="large" />
                     </span>
                 </Grid>
