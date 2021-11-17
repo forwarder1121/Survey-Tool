@@ -1,10 +1,13 @@
 import Header from '../components/formPage/Header'
-import { Grid, FormControl, Select, MenuItem, OutlinedInput, Button } from "@material-ui/core"
+import { Grid, FormControl, Select, MenuItem, OutlinedInput, Button, List, ListItem, ListItemText, ListItemIcon } from "@material-ui/core"
 import * as React from 'react';
+import { AccessAlarm } from "@material-ui/icons"
 
 function CreateForm() {
   const [supertype, setSuperType] = React.useState('');
   const [subtype, setSubType] =React.useState('');
+  const [selectedIndex, setSelectedIndex] = React.useState(1);
+
   const handleSuperTypeChange = (event) => {
     setSuperType(event.target.value);
     setSubType(-1);
@@ -12,6 +15,10 @@ function CreateForm() {
   const handleSubTypeChange = (event) => {
     setSubType(event.target.value);
   };
+  const handleListItemClick = (event, index) => {
+    setSelectedIndex(index);
+  };
+
   const supertypes = [
     '객관식',
     '선형평가',
@@ -70,6 +77,19 @@ function CreateForm() {
                       ))}
                     </Select>
                   </FormControl>
+                </div>
+
+                <div style={{ height: "100%" }}>
+                  <List style={{ maxHeight: "40%", overflow: "scroll" }}>
+                    <ListItem selected={selectedIndex === 0} onClick={(event) => handleListItemClick(event, 0)}>
+                      <ListItemIcon></ListItemIcon>
+                      <ListItemText primary="초기화면" />
+                    </ListItem>
+                    <ListItem selected={selectedIndex === 1} onClick={(event) => handleListItemClick(event, 1)}>
+                      <ListItemIcon><AccessAlarm /></ListItemIcon>
+                      <ListItemText className="text-hide" primary="잠시후 시간제한 문항이 시작됩니다." />
+                    </ListItem>
+                  </List>
                 </div>
                 
                 <div className="new-page-draggable">
