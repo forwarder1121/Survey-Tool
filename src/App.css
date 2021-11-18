@@ -17,28 +17,6 @@ header {
 .header-search {
   margin: 10px 80px;
 }
-.hor-menu {
-  text-align: center;
-  display: flex;
-  justify-content: center;
-}
-.hor-menu-ele {
-  padding: 0px 20px;
-}
-.hor-menu-ele-act {
-  padding: 0px 15px;
-  color: rgb(40, 40, 100);
-  border-bottom: 1px solid rgb(40, 40, 100);
-}
-.hor-menu-wrapper {
-  line-height: 50px;
-  font-size: 14px;
-  border-bottom: 1px solid rgb(120, 120, 120);
-}
-.hor-menu-ele-act2 {
-  color: rgb(40, 40, 100);
-  border-bottom: 1px solid rgb(40, 40, 100);
-}
 
 hr {
   border: 0.1px solid rgb(230, 230, 230);
@@ -83,7 +61,7 @@ hr {
   color: #000;
 }
 .menu ul li:hover, .menu > label:hover {
-  background-color: rgba(230, 230, 230);
+  background-color: rgb(230, 230, 230);
 }
 .menu div {
   line-height: 1.5;
@@ -106,6 +84,29 @@ hr {
 }
 .menu-bottom li {
   color: rgb(80, 80, 80);
+}
+
+.hor-menu {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+.hor-menu-ele {
+  padding: 0px 20px;
+}
+.hor-menu-ele-act {
+  padding: 0px 15px;
+  color: rgb(40, 40, 100);
+  border-bottom: 1px solid rgb(40, 40, 100);
+}
+.hor-menu-wrapper {
+  line-height: 50px;
+  font-size: 14px;
+  border-bottom: 1px solid rgb(120, 120, 120);
+}
+.hor-menu-ele-act2 {
+  color: rgb(40, 40, 100);
+  border-bottom: 1px solid rgb(40, 40, 100);
 }
 
 .form-list {
@@ -173,4 +174,27 @@ hr {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.explain {
+  color: rgb(110, 110, 110);
+  font-size: 15px;
+  text-align: center;
+  position: relative;
+  top: 35%;
+}
+
+.content-wrapper {
+  position: fixed;
+  height: 100%;
+  width: 70%;
+  left: 15%;
+  background-color: rgba(230, 230, 230, 0.3);
+  text-align: center;
+}
+.content-box {
+  background-color: white;
+  margin: 50px;
+  height: 72%;
+  border: 0.1px solid rgb(230, 230, 230);
 }
