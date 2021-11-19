@@ -92,18 +92,9 @@ function CreateForm() {
       </div>
 
       <div className="menu-wrapper" style={{ right: 0 }}>
-        <div className="hor-menu-wrapper">
-          <div className="hor-menu">
-            <Grid container spacing={1}>
-              <Grid item sm={4}><div className="hor-menu-ele-act2">문항설정</div></Grid>
-              <Grid item sm={4}>디자인</Grid>
-              <Grid item sm={4}>응답보상</Grid>
-            </Grid>
-          </div>
-        </div>
         <pre className="explain">
-            [내용추가]에서<br/>
-            하위 유형을 선택해주세요
+          [내용추가]에서<br/>
+          하위 유형을 선택해주세요
         </pre>
       </div>
     </div>
