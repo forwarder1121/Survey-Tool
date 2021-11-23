@@ -1,33 +1,31 @@
 import Header from '../components/formPage/Header'
-import { FormControl, Select, MenuItem, OutlinedInput, Button, List, ListItem, ListItemText, ListItemIcon, Box } from "@material-ui/core"
+import { FormControl, Select, MenuItem, OutlinedInput, Button, List, ListItem, ListItemText, ListItemIcon, Box, Grid } from "@material-ui/core"
 import * as React from 'react';
 import { AccessAlarm } from "@material-ui/icons"
 
 function CreateForm() {
-  const [supertype, setSuperType] = React.useState('');
-  const [subtype, setSubType] =React.useState('');
   const [selectedIndex, setSelectedIndex] = React.useState(0);
-
-  const handleSuperTypeChange = (event) => {
-    setSuperType(event.target.value);
-    setSubType(-1);
-  };
-  const handleSubTypeChange = (event) => {
-    setSubType(event.target.value);
-  };
-  const handleListItemClick = (event, index) => {
+  const [type, setType] = React.useState('');
+  const handleListItemClick = (index) => {
     setSelectedIndex(index);
   };
+  const handleTypeChange = (event) => {
+    setType(event.target.value);
+    //setType(index);
+  };
 
-  const supertypes = [
-    '객관식',
-    '선형평가',
-    '추가설정(시작화면/끝화면/중간화면)'
-  ];
-  const subtypes = [
-    ['일반 객관식', '드롭다운', '격자형(표)', '이미지 선택형', '폐쇄형', '순위 매기기'],
-    ['별점형', '척도형(NDS조사/수치형)'],
-    ['시작화면', '중간화면', '끝화면']
+  const types = [
+    '일반 객관식',
+    '이미지 선택형',
+    '순위 매기기',
+    '격자형(표)',
+    '드롭다운',
+    '폐쇄형',
+    '-----',
+    '별점형',
+    '척도형(NDS조사/수치형)',
+    '-----',
+    '중간화면'
   ];
 
   return (
@@ -36,7 +34,7 @@ function CreateForm() {
       <div className="menu-wrapper">
         <div className="hor-menu-wrapper">
           <div className="hor-menu">
-              <div className="hor-menu-ele-act2" style={{ width: "100%" }}>내용추가</div>
+              <div className="hor-menu-ele-act" style={{ width: "100%" }}>내용추가</div>
           </div>
         </div>
 
@@ -111,12 +109,63 @@ function CreateForm() {
       </div>
 
       <div className="menu-wrapper" style={{ right: 0 }}>
+        <div className="hor-menu-wrapper">
+          <div className="hor-menu">
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              <div className="hor-menu-ele-act">문항설정</div>
+            </Grid>
+            <Grid item xs={6}>
+              <div className="hor-menu-ele">설문설정</div>
+            </Grid>
+          </Grid>
+          </div>
+        </div>
+
+        <div>
+          <div className="menu-sub-title">현재페이지 {type} </div>
+          <div style={{ padding: "10px 0px"}}>
+            <FormControl fullWidth>
+              <Select value={ type === "" ? -1 : type } onChange={handleTypeChange} input={<OutlinedInput />}>
+                <MenuItem disabled value="-1"><em>유형을 선택해주세요</em></MenuItem>
+                {types.map((type, index) => (
+                  <MenuItem key={index} value={index} disabled={type==='-----'}>{type}</MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </div>
+        </div>
+
+      </div>
+
+      {/*<div className="menu-wrapper" style={{ right: 0 }}>
         <pre className="explain">
           [내용추가]에서<br/>
           하위 유형을 선택해주세요
         </pre>
-      </div>
+            </div>*/}
     </div>
   );
 }
 export default CreateForm;
+
+{/*<div style={{ padding: "10px 0px"}}>
+  <FormControl fullWidth>
+    <Select value={ supertype === "" ? -1 : supertype } onChange={handleSuperTypeChange} input={<OutlinedInput />}>
+      <MenuItem disabled value="-1"><em>상위유형을 선택해주세요</em></MenuItem>
+      {supertypes.map((type, index) => (
+        <MenuItem key={type} value={index}>{type}</MenuItem>
+      ))}
+    </Select>
+  </FormControl>
+</div>
+<div style={{ paddingBottom: "10px"}}>
+  <FormControl fullWidth disabled={ supertype === "" }>
+    <Select value={ subtype === "" ? -1 : subtype } onChange={handleSubTypeChange} input={<OutlinedInput />}>
+      <MenuItem disabled value="-1"><em>하위유형을 선택해주세요</em></MenuItem>
+      {subtypes[supertype === "" ? 0 : supertype ].map((type, index) => (
+        <MenuItem key={type} value={index}>{type}</MenuItem>
+      ))}
+    </Select>
+  </FormControl>
+      </div>*/}

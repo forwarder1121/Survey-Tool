@@ -36,7 +36,8 @@ hr {
   height: 100%;
   position: fixed;
   width: 15%;
-  border: 1px solid rgb(230, 230, 230);
+  border-right: 1px solid rgb(230, 230, 230);
+  border-left: 1px solid rgb(230, 230, 230);
 }
 .menu {
   display: block;
@@ -108,10 +109,6 @@ hr {
   line-height: 50px;
   font-size: 14px;
   border-bottom: 1px solid rgb(120, 120, 120);
-}
-.hor-menu-ele-act2 {
-  color: rgb(40, 40, 100);
-  border-bottom: 1px solid rgb(40, 40, 100);
 }
 
 .form-list {
