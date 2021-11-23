@@ -1,12 +1,12 @@
 import Header from '../components/formPage/Header'
-import { Grid, FormControl, Select, MenuItem, OutlinedInput, Button, List, ListItem, ListItemText, ListItemIcon } from "@material-ui/core"
+import { FormControl, Select, MenuItem, OutlinedInput, Button, List, ListItem, ListItemText, ListItemIcon, Box } from "@material-ui/core"
 import * as React from 'react';
 import { AccessAlarm } from "@material-ui/icons"
 
 function CreateForm() {
   const [supertype, setSuperType] = React.useState('');
   const [subtype, setSubType] =React.useState('');
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
 
   const handleSuperTypeChange = (event) => {
     setSuperType(event.target.value);
@@ -36,15 +36,51 @@ function CreateForm() {
       <div className="menu-wrapper">
         <div className="hor-menu-wrapper">
           <div className="hor-menu">
-            <Grid container spacing={1}>
-              <Grid item sm={4}><div className="hor-menu-ele-act2">내용추가</div></Grid>
-              <Grid item sm={4}>로직설계</Grid>
-              <Grid item sm={4}>설문설정</Grid>
-            </Grid>
+              <div className="hor-menu-ele-act2" style={{ width: "100%" }}>내용추가</div>
           </div>
         </div>
 
-        <div style={{ padding: "10px 0px"}}>
+        <div>
+          <div className="menu-sub-title">시작화면 {selectedIndex} </div>
+          <div style={{ height: "100%" }}>
+            <List>
+              <ListItem selected={selectedIndex === 0} onClick={(event) => handleListItemClick(event, 0)}>
+                <ListItemIcon><AccessAlarm /></ListItemIcon>
+                <ListItemText className="text-hide" primary="시작화면 문구" />
+              </ListItem>
+            </List>
+          </div>
+        </div>
+
+          <div className="menu-sub-title">시간제한 세트</div>
+          <div style={{ height: "100%" }}>       
+            <Box sx={{ height: "100%", overflowY: "scroll" }}>
+              <List>
+                <ListItem selected={selectedIndex === 1} onClick={(event) => handleListItemClick(event, 1)}>
+                  <ListItemIcon><AccessAlarm /></ListItemIcon>
+                  <ListItemText className="text-hide" primary="잠시후 시간제한 문항이 시작됩니다." />
+                </ListItem>
+                <ListItem selected={selectedIndex === 2} onClick={(event) => handleListItemClick(event, 2)}>
+                  <ListItemIcon></ListItemIcon>
+                  <ListItemText primary="유형 미정" />
+                </ListItem>
+              </List>
+            </Box>
+          </div>
+
+          <div className="new-page-draggable">
+            <div className="menu-sub-title">끝화면</div>
+            <div style={{ height: "100%" }}>
+              <List>
+                <ListItem selected={selectedIndex === 0} onClick={(event) => handleListItemClick(event, 0)}>
+                  <ListItemIcon></ListItemIcon>
+                  <ListItemText className="text-hide" primary="BUTTON" />
+                </ListItem>
+              </List>
+            </div>
+            <Button variant="contained" color="primary" style={{ width: "90%", left: "5%" }}>새로운 페이지 추가</Button>
+          </div>
+        {/*<div style={{ padding: "10px 0px"}}>
           <FormControl fullWidth>
             <Select value={ supertype === "" ? -1 : supertype } onChange={handleSuperTypeChange} input={<OutlinedInput />}>
               <MenuItem disabled value="-1"><em>상위유형을 선택해주세요</em></MenuItem>
@@ -63,24 +99,7 @@ function CreateForm() {
               ))}
             </Select>
           </FormControl>
-        </div>
-
-        <div style={{ height: "100%" }}>
-          <List style={{ maxHeight: "40%", overflow: "scroll" }}>
-            <ListItem selected={selectedIndex === 0} onClick={(event) => handleListItemClick(event, 0)}>
-              <ListItemIcon></ListItemIcon>
-              <ListItemText primary="초기화면" />
-            </ListItem>
-            <ListItem selected={selectedIndex === 1} onClick={(event) => handleListItemClick(event, 1)}>
-              <ListItemIcon><AccessAlarm /></ListItemIcon>
-              <ListItemText className="text-hide" primary="잠시후 시간제한 문항이 시작됩니다." />
-            </ListItem>
-          </List>
-        </div>
-        
-        <div className="new-page-draggable">
-          <Button variant="contained" color="primary">새로운 페이지 추가</Button>
-        </div>
+              </div>*/}
       </div>
 
       <div className="content-wrapper">

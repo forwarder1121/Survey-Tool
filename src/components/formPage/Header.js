@@ -9,7 +9,7 @@ function Header(props) {
         <header>
             <Grid container spacing={1}>
                 <Grid item sm={3}>
-                    <div style={{ fontWeight: "600" }}>프로젝트명 / 현재설문이름</div>
+                    <div style={{ fontWeight: "600" }}>메인 웹사이트 / 타임폼즈</div>
                 </Grid>
                 <Grid item sm={6}>
                     <div className="hor-menu">
