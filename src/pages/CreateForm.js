@@ -147,7 +147,8 @@ function CreateForm() {
 
           <div className="menu-sub-title">문항설정</div>
           <div>
-            {/*<SetButtonField buttonText={buttonText} />*/}
+            <div>{buttonText}</div>
+            <SetButtonField buttonText={buttonText} setButtonText={setButtonText} />
             <div className="menu-sub-text" style={{ display: "inline-block" }}>시간설정</div>
             <Switch color="primary" checked={timeChecked} onChange={handleTimeChecked} />
           </div>
