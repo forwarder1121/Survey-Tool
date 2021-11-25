@@ -5,18 +5,15 @@ import MenuItem from "@material-ui/core/MenuItem"
 import OutlinedInput from "@material-ui/core/OutlinedInput"
 
 function SelectField(props) {
-    const [item, setItem] = React.useState('');
+    const [item, setItem] = React.useState(props.selected);
     const handleChange = (event) => {
         setItem(event.target.value);
         props.setItem(event.target.value);
-        console.log(1);
     };
-    return (//props -> items, setItem, disabled, placeholder, selectedIndex 
+    return (//props -> items, setItem, disabled, placeholder, selected
         <div style={{ padding: "10px 20px 20px 20px" }}>
-            {item}
-            이부분 초기화 필요함
             <FormControl fullWidth>
-              <Select value={ props.disabled ? -1 : item } disabled={props.disabled} onChange={handleChange} input={<OutlinedInput />}>
+              <Select value={ props.disabled ? -1 : props.selected } disabled={props.disabled} onChange={handleChange} input={<OutlinedInput />}>
                 <MenuItem disabled value="-1">
                   {props.placeholder && props.placeholder}
                 </MenuItem>

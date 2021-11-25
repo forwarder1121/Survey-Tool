@@ -18,56 +18,80 @@ function CreateForm() {
 
   const exampleData = [
     {
-      title: 'title1',
-      type: '',
+      id: 0,
+      title: '첫화면',
+      type: -1,
       buttonText: '',
       timeChecked: false
     },
     {
-      title: 'title2',
-      type: '',
+      id: 1,
+      title: '시간제한화면',
+      type: -1,
+      buttonText: '',
+      timeChecked: true
+    },
+    {
+      id: 2,
+      title: '끝화면',
+      type: -1,
+      buttonText: '',
+      timeChecked: true
+    },
+    {
+      id: 3,
+      title: 'sample1',
+      type: -1,
+      buttonText: '',
+      timeChecked: true
+    },
+    {
+      id: 4,
+      title: 'sample2',
+      type: -1,
       buttonText: '',
       timeChecked: true
     }
   ];
-  const [arr, setArr] = React.useState(exampleData);
+  const [data, setData] = React.useState(exampleData);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
-  const [type, setType] = React.useState('');
+  //const [type, setType] = React.useState('');
   const [buttonText, setButtonText] = React.useState('');
   const [timeChecked, setTimeCheck] = React.useState(false);
   const init = () => {
     console.log("init");
-    setType('');
+    //setType('');
     setButtonText('');
     setTimeCheck(false);
     //setArr(exampleData);
   };
-  const addArr = () => {
-    console.log("addArr");
-    setArr([
-      ...arr,
+  const addData = () => {
+    console.log("addData");
+    setData([
+      ...data,
       {
-        type: '',
+        id: data.length,
+        title: 'sample'+(data.length-2),
+        type: -1,
         buttonText: '',
         timeChecked: false
       }
     ]);
   };
-  const updateArr = (index) => {
+  const updateType = (type) => {
     console.log("updateArr");
-    console.log('index: ' + index);
-    let newArr = [...arr]; 
-    newArr[index].buttonText = "Test";
-    setArr(newArr);
+    let newData = [...data]; 
+    newData[selectedIndex].type = type;
+    setData(newData);
   }
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
-    setType('');
+    //setType('');
     setButtonText('');
     setTimeCheck(false);
   };
   const handleTypeChange = (event) => {
-    setType(event.target.value);
+    //setType(event.target.value);
     //setType(index);
   };
   const handleTimeChecked = (event) => {
@@ -88,7 +112,6 @@ function CreateForm() {
     '-----',
     '중간화면'
   ];
-
   return (
     <div>
       <Header action="create" />
@@ -98,7 +121,6 @@ function CreateForm() {
               <div className="hor-menu-ele-act" style={{ width: "100%" }}>내용추가</div>
           </div>
         </div>
-
         <div>
           <div className="menu-sub-title">시작화면 {selectedIndex}</div>
           <div style={{ height: "100%" }}>
@@ -119,12 +141,19 @@ function CreateForm() {
                 <ListItemIcon><AccessAlarm /></ListItemIcon>
                 <ListItemText className="text-hide" primary="잠시후 시간제한 문항이 시작됩니다." />
               </ListItem>
-              {exampleData.map((item, index) => (
-                <ListItem key={index+3} selected={selectedIndex === index+3} onClick={(event) => handleListItemClick(event, index+3)}>
+              {data.filter(data => data.id >= 3)
+              .map((item) => (
+                <ListItem key={item.id} selected={selectedIndex === item.id} onClick={(event) => handleListItemClick(event, item.id)}>
                   <ListItemIcon></ListItemIcon>
                   <ListItemText primary={item.title} />
                 </ListItem>
               ))}
+              {/*data.map((item, index) => (
+                <ListItem key={index+3} selected={selectedIndex === index+3} onClick={(event) => handleListItemClick(event, index+3)}>
+                  <ListItemIcon></ListItemIcon>
+                  <ListItemText primary={item.title} />
+                </ListItem>
+              ))*/}
             </List>
           </Box>
         </div>
@@ -139,7 +168,7 @@ function CreateForm() {
               </ListItem>
             </List>
           </div>
-          <Button variant="contained" color="primary" style={{ width: "90%", left: "5%" }}>새로운 페이지 추가</Button>
+          <Button variant="contained" color="primary" style={{ width: "90%", left: "5%" }} onClick={addData}>새로운 페이지 추가</Button>
         </div>
       </div>
 
@@ -166,8 +195,8 @@ function CreateForm() {
         </div>
 
         <div>
-          <div className="menu-sub-title">현재페이지{type}</div>
-          <SelectField items={types} setItem={setType} disabled={selectedIndex < 3} placeholder={
+          <div className="menu-sub-title">현재페이지</div>
+          <SelectField items={types} setItem={updateType} selected={data[selectedIndex].type} disabled={selectedIndex < 3} placeholder={
             (() => {
               if (selectedIndex === 0) return (<em>시작화면</em>);
               if (selectedIndex === 1) return (<em>시간제한 세트 첫페이지</em>);
@@ -188,7 +217,7 @@ function CreateForm() {
                   <Switch color="primary" checked={timeChecked} onChange={handleTimeChecked} />
                 </div>
               </div>
-              { timeChecked && <SelectField items={types} setItem={setType} disabled={selectedIndex < 3} placeholder={
+              { timeChecked && <SelectField items={types} setItem={updateType} disabled={selectedIndex < 3} placeholder={
             (() => {
               if (selectedIndex === 0) return (<em>시작화면</em>);
               if (selectedIndex === 1) return (<em>시간제한 세트 첫페이지</em>);
