@@ -95,6 +95,11 @@ hr {
 .menu-bottom li {
   color: rgb(80, 80, 80);
 }
+.menu-right-align {
+  position: fixed;
+  right: 0;
+  margin-right: 20px;
+}
 
 .hor-menu {
   text-align: center;

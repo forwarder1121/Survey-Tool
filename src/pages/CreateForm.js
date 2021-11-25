@@ -1,8 +1,5 @@
+import * as React from 'react';
 import Header from '../components/formPage/Header'
-import FormControl from "@material-ui/core/FormControl"
-import Select from "@material-ui/core/Select"
-import MenuItem from "@material-ui/core/MenuItem"
-import OutlinedInput from "@material-ui/core/OutlinedInput"
 import Button from "@material-ui/core/Button"
 import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
@@ -12,15 +9,57 @@ import Box from "@material-ui/core/Box"
 import Grid from "@material-ui/core/Grid"
 import Switch from "@material-ui/core/Switch"
 import Divider from "@material-ui/core/Divider"
-import * as React from 'react';
 import { AccessAlarm } from "@material-ui/icons"
 import SetButtonField from '../components/formPage/SetButtonField'
+import SelectField from '../components/common/SelectField'
+
 
 function CreateForm() {
+
+  const exampleData = [
+    {
+      title: 'title1',
+      type: '',
+      buttonText: '',
+      timeChecked: false
+    },
+    {
+      title: 'title2',
+      type: '',
+      buttonText: '',
+      timeChecked: true
+    }
+  ];
+  const [arr, setArr] = React.useState(exampleData);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   const [type, setType] = React.useState('');
   const [buttonText, setButtonText] = React.useState('');
   const [timeChecked, setTimeCheck] = React.useState(false);
+  const init = () => {
+    console.log("init");
+    setType('');
+    setButtonText('');
+    setTimeCheck(false);
+    //setArr(exampleData);
+  };
+  const addArr = () => {
+    console.log("addArr");
+    setArr([
+      ...arr,
+      {
+        type: '',
+        buttonText: '',
+        timeChecked: false
+      }
+    ]);
+  };
+  const updateArr = (index) => {
+    console.log("updateArr");
+    console.log('index: ' + index);
+    let newArr = [...arr]; 
+    newArr[index].buttonText = "Test";
+    setArr(newArr);
+  }
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
     setType('');
@@ -64,7 +103,7 @@ function CreateForm() {
           <div className="menu-sub-title">시작화면 {selectedIndex}</div>
           <div style={{ height: "100%" }}>
             <List>
-              <ListItem selected={selectedIndex === 0} onClick={(event) => handleListItemClick(event, 0)}>
+              <ListItem key={0} selected={selectedIndex === 0} onClick={(event) => handleListItemClick(event, 0)}>
                 <ListItemIcon><AccessAlarm /></ListItemIcon>
                 <ListItemText primary="시작화면 문구" />
               </ListItem>
@@ -76,14 +115,16 @@ function CreateForm() {
         <div style={{ height: "100%" }}>       
           <Box sx={{ height: "100%", overflowY: "scroll" }}>
             <List>
-              <ListItem selected={selectedIndex === 1} onClick={(event) => handleListItemClick(event, 1)}>
+              <ListItem key={1} selected={selectedIndex === 1} onClick={(event) => handleListItemClick(event, 1)}>
                 <ListItemIcon><AccessAlarm /></ListItemIcon>
                 <ListItemText className="text-hide" primary="잠시후 시간제한 문항이 시작됩니다." />
               </ListItem>
-              <ListItem selected={selectedIndex === 3} onClick={(event) => handleListItemClick(event, 3)}>
-                <ListItemIcon></ListItemIcon>
-                <ListItemText primary="유형 미정" />
-              </ListItem>
+              {exampleData.map((item, index) => (
+                <ListItem key={index+3} selected={selectedIndex === index+3} onClick={(event) => handleListItemClick(event, index+3)}>
+                  <ListItemIcon></ListItemIcon>
+                  <ListItemText primary={item.title} />
+                </ListItem>
+              ))}
             </List>
           </Box>
         </div>
@@ -92,7 +133,7 @@ function CreateForm() {
           <div className="menu-sub-title">끝화면</div>
           <div style={{ height: "100%" }}>
             <List>
-              <ListItem selected={selectedIndex === 2} onClick={(event) => handleListItemClick(event, 2)}>
+              <ListItem key={2} selected={selectedIndex === 2} onClick={(event) => handleListItemClick(event, 2)}>
                 <ListItemIcon></ListItemIcon>
                 <ListItemText className="text-hide" primary="BUTTON" />
               </ListItem>
@@ -126,31 +167,36 @@ function CreateForm() {
 
         <div>
           <div className="menu-sub-title">현재페이지{type}</div>
-          <div style={{ padding: "10px 20px 20px 20px" }}>
-            <FormControl fullWidth>
-              <Select value={ type === "" ? -1 : type } disabled={selectedIndex < 3} onChange={handleTypeChange} input={<OutlinedInput />}>
-                <MenuItem disabled value="-1">
-                  {(() => {
-                    if (selectedIndex === 0) return (<em>시작화면</em>);
-                    if (selectedIndex === 1) return (<em>시간제한 세트 첫페이지</em>);
-                    if (selectedIndex === 2) return (<em>끝화면</em>);
-                    if (selectedIndex >= 3) return (<em>유형을 선택해주세요</em>);
-                  })()}
-                </MenuItem>
-                {types.map((type, index) => (
-                  <MenuItem key={index} value={index} disabled={type==='-----'}>{type}</MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </div>
+          <SelectField items={types} setItem={setType} disabled={selectedIndex < 3} placeholder={
+            (() => {
+              if (selectedIndex === 0) return (<em>시작화면</em>);
+              if (selectedIndex === 1) return (<em>시간제한 세트 첫페이지</em>);
+              if (selectedIndex === 2) return (<em>끝화면</em>);
+              if (selectedIndex >= 3) return (<em>유형을 선택해주세요</em>);
+            })()
+          } />
           <Divider />
 
           <div className="menu-sub-title">문항설정</div>
           <div>
             <div>{buttonText}</div>
             <SetButtonField buttonText={buttonText} setButtonText={setButtonText} />
-            <div className="menu-sub-text" style={{ display: "inline-block" }}>시간설정</div>
-            <Switch color="primary" checked={timeChecked} onChange={handleTimeChecked} />
+            <div>
+              <div style={{ display: "flex" }}>
+                <div className="menu-sub-text">시간설정</div>
+                <div className="menu-right-align">
+                  <Switch color="primary" checked={timeChecked} onChange={handleTimeChecked} />
+                </div>
+              </div>
+              { timeChecked && <SelectField items={types} setItem={setType} disabled={selectedIndex < 3} placeholder={
+            (() => {
+              if (selectedIndex === 0) return (<em>시작화면</em>);
+              if (selectedIndex === 1) return (<em>시간제한 세트 첫페이지</em>);
+              if (selectedIndex === 2) return (<em>끝화면</em>);
+              if (selectedIndex >= 3) return (<em>유형을 선택해주세요</em>);
+            })()
+          } /> }
+            </div>
           </div>
           <Divider />
 
