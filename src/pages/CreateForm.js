@@ -14,6 +14,7 @@ import SetButtonField from '../components/formPage/SetButtonField'
 import SelectField from '../components/common/SelectField'
 import SetImageField from '../components/formPage/SetImageField'
 import ExitField from '../components/formPage/ExitField';
+import CheckFollowingList from '../components/common/CheckFollowingList';
 
 function CreateForm() {
 
@@ -70,9 +71,6 @@ function CreateForm() {
   ];
   const [data, setData] = React.useState(exampleData);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
-  //const [type, setType] = React.useState('');
-  //const [buttonText, setButtonText] = React.useState('');
-  //const [timeChecked, setTimeCheck] = React.useState(false);
   const addData = () => {
     console.log("addData");
     setData([
@@ -100,11 +98,11 @@ function CreateForm() {
     setData(newData);
     console.log("updateButtonText" + newData[selectedIndex].buttonText);
   }
-  const updateTimeChecked = (event) => {
-    console.log("updateTimeChecked" + event.target.checked);
+  const updateTimeChecked = (checked) => {
+    console.log("updateTimeChecked" + checked);
     let newData = [...data]; 
-    newData[selectedIndex].timeChecked = event.target.checked;
-    newData[selectedIndex].timeOption = event.target.checked ? 10 : 0;
+    newData[selectedIndex].timeChecked = checked;
+    newData[selectedIndex].timeOption = checked ? 10 : 0;
     setData(newData);
   };
   const updateTime = (option) => {
@@ -199,12 +197,6 @@ function CreateForm() {
                   <ListItemText primary={item.title} />
                 </ListItem>
               ))}
-              {/*data.map((item, index) => (
-                <ListItem key={index+3} selected={selectedIndex === index+3} onClick={(event) => handleListItemClick(event, index+3)}>
-                  <ListItemIcon></ListItemIcon>
-                  <ListItemText primary={item.title} />
-                </ListItem>
-              ))*/}
             </List>
           </Box>
         </div>
@@ -264,18 +256,12 @@ function CreateForm() {
           </div>
           { selectedIndex !== 2 ?
             <div>
-              <div style={{ display: "flex" }}>
-                <div className="menu-sub-text">시간설정</div>
-                <div className="menu-right-align">
-                  <Switch color="primary" checked={data[selectedIndex].timeChecked} onChange={updateTimeChecked} />
-                </div>
-              </div>
-              { data[selectedIndex].timeChecked && 
-                <SelectField items={timeOptions} setItem={updateTime} selected={ (() => {
+              <CheckFollowingList name="시간설정" checked={data[selectedIndex].timeChecked} checkedChange={updateTimeChecked} listItems={timeOptions} listChange={updateTime}
+                listSelected={ (() => {
                   if (data[selectedIndex].timeOption === 10) return 0;
                   if (data[selectedIndex].timeOption === 7) return 1;
                   if (data[selectedIndex].timeOption === 13) return 2;
-                })()} /> }
+                })()} />
               <Divider />
 
               <div className="menu-sub-title">이미지삽입</div>
