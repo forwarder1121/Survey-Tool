@@ -7,14 +7,13 @@ import ListItemText from "@material-ui/core/ListItemText"
 import ListItemIcon from "@material-ui/core/ListItemIcon"
 import Box from "@material-ui/core/Box"
 import Grid from "@material-ui/core/Grid"
-import Switch from "@material-ui/core/Switch"
 import Divider from "@material-ui/core/Divider"
 import { AccessAlarm } from "@material-ui/icons"
 import SetButtonField from '../components/formPage/SetButtonField'
 import SelectField from '../components/common/SelectField'
 import SetImageField from '../components/formPage/SetImageField'
-import ExitField from '../components/formPage/ExitField';
-import CheckFollowingList from '../components/common/CheckFollowingList';
+import ExitField from '../components/formPage/ExitField'
+import CheckFollowingOption from '../components/common/CheckFollowingOption'
 
 function CreateForm() {
 
@@ -71,6 +70,7 @@ function CreateForm() {
   ];
   const [data, setData] = React.useState(exampleData);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const [tabIndex, setTabIndex] = React.useState(0);
   const addData = () => {
     console.log("addData");
     setData([
@@ -86,6 +86,10 @@ function CreateForm() {
       }
     ]);
   };
+  const handleTab = (index) => {
+    console.log(index);
+    setTabIndex(index);
+  }
   const updateType = (type) => {
     console.log("updateType");
     let newData = [...data]; 
@@ -227,53 +231,57 @@ function CreateForm() {
         <div className="hor-menu-wrapper">
           <div className="hor-menu">
           <Grid container spacing={2}>
-            <Grid item xs={6}>
-              <div className="hor-menu-ele-act">문항설정</div>
+            <Grid item xs={6} onClick={(event) => handleTab(0)}>
+              <div className={tabIndex === 0 ? "hor-menu-ele-act" : "hor-menu-ele"}>문항설정</div>
             </Grid>
-            <Grid item xs={6}>
-              <div className="hor-menu-ele">설문설정</div>
+            <Grid item xs={6} onClick={(event) => handleTab(1)}>
+              <div className={tabIndex === 1 ? "hor-menu-ele-act" : "hor-menu-ele"}>설문설정</div>
             </Grid>
           </Grid>
           </div>
         </div>
 
-        <div>
-          <div className="menu-sub-title">현재페이지</div>
-          <SelectField items={types} setItem={updateType} selected={data[selectedIndex].type} disabled={selectedIndex < 3} placeholder={
-            (() => {
-              if (selectedIndex === 0) return (<em>시작화면</em>);
-              if (selectedIndex === 1) return (<em>시간제한 세트 첫페이지</em>);
-              if (selectedIndex === 2) return (<em>끝화면</em>);
-              if (selectedIndex >= 3) return (<em>유형을 선택해주세요</em>);
-            })()
-          } />
-          <Divider />
-
-          <div className="menu-sub-title">문항설정</div>
+        {tabIndex === 0 ?
           <div>
-            <div>{data[selectedIndex].buttonText}</div>
-            <SetButtonField buttonText={data[selectedIndex].buttonText} setButtonText={updateButtonText} />
-          </div>
-          { selectedIndex !== 2 ?
+            <div className="menu-sub-title">현재페이지</div>
+            <SelectField items={types} setItem={updateType} selected={data[selectedIndex].type} disabled={selectedIndex < 3} placeholder={
+              (() => {
+                if (selectedIndex === 0) return (<em>시작화면</em>);
+                if (selectedIndex === 1) return (<em>시간제한 세트 첫페이지</em>);
+                if (selectedIndex === 2) return (<em>끝화면</em>);
+                if (selectedIndex >= 3) return (<em>유형을 선택해주세요</em>);
+              })()
+            } />
+            <Divider />
+
+            <div className="menu-sub-title">문항설정</div>
             <div>
-              <CheckFollowingList name="시간설정" checked={data[selectedIndex].timeChecked} checkedChange={updateTimeChecked} listItems={timeOptions} listChange={updateTime}
-                listSelected={ (() => {
-                  if (data[selectedIndex].timeOption === 10) return 0;
-                  if (data[selectedIndex].timeOption === 7) return 1;
-                  if (data[selectedIndex].timeOption === 13) return 2;
-                })()} />
-              <Divider />
-
-              <div className="menu-sub-title">이미지삽입</div>
-              <div>
-                <SetImageField img={data[selectedIndex].img} setImage={updateImage} />
-              </div>
+              <div>{data[selectedIndex].buttonText}</div>
+              <SetButtonField buttonText={data[selectedIndex].buttonText} setButtonText={updateButtonText} />
             </div>
-            :
-            <ExitField data={data[2]} exitCheckedChange={updateExitChecked} exitLinkChange={updateExitLink} exitCustominkChange={updateExitCustomLink} />
-          }
+            { selectedIndex !== 2 ?
+              <div>
+                <CheckFollowingOption name="시간설정" checked={data[selectedIndex].timeChecked} checkedChange={updateTimeChecked} 
+                  option={<SelectField items={timeOptions} setItem={updateTime} selected={ (() => {
+                    if (data[selectedIndex].timeOption === 10) return 0;
+                    if (data[selectedIndex].timeOption === 7) return 1;
+                    if (data[selectedIndex].timeOption === 13) return 2;
+                  })()} />} />
+                <Divider />
 
-        </div>
+                <div className="menu-sub-title">이미지삽입</div>
+                <div>
+                  <SetImageField img={data[selectedIndex].img} setImage={updateImage} />
+                </div>
+              </div>
+              :
+              <ExitField data={data[2]} exitCheckedChange={updateExitChecked} exitLinkChange={updateExitLink} exitCustominkChange={updateExitCustomLink} />
+            }
+          </div>
+          :
+          <div>
+            설문설정
+          </div>}
 
       </div>
 
