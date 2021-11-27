@@ -12,7 +12,8 @@ import Divider from "@material-ui/core/Divider"
 import { AccessAlarm } from "@material-ui/icons"
 import SetButtonField from '../components/formPage/SetButtonField'
 import SelectField from '../components/common/SelectField'
-
+import SetImageField from '../components/formPage/SetImageField'
+import ExitField from '../components/formPage/ExitField';
 
 function CreateForm() {
 
@@ -23,7 +24,8 @@ function CreateForm() {
       type: -1,
       buttonText: '',
       timeChecked: false,
-      timeOption: 0
+      timeOption: 0,
+      img: ''
     },
     {
       id: 1,
@@ -31,7 +33,8 @@ function CreateForm() {
       type: -1,
       buttonText: '',
       timeChecked: false,
-      timeOption: 0
+      timeOption: 0,
+      img: ''
     },
     {
       id: 2,
@@ -39,7 +42,12 @@ function CreateForm() {
       type: -1,
       buttonText: '',
       timeChecked: false,
-      timeOption: 0
+      timeOption: 0,
+      img: '',
+      exitChecked: false, // 끝화면에만 있음!!!
+      exitCustomLinkChecked: false, // 끝화면에만 있음!!!
+      exitLink: 'www.naver.com', // 끝화면에만 있음 -> api 작업시 여기 빼고 회사 info로 넣기
+      exitCustomLink: '' // 끝화면에만 있음!!!
     },
     {
       id: 3,
@@ -47,7 +55,8 @@ function CreateForm() {
       type: -1,
       buttonText: '',
       timeChecked: false,
-      timeOption: 0
+      timeOption: 0,
+      img: ''
     },
     {
       id: 4,
@@ -55,7 +64,8 @@ function CreateForm() {
       type: -1,
       buttonText: '',
       timeChecked: false,
-      timeOption: 0
+      timeOption: 0,
+      img: ''
     }
   ];
   const [data, setData] = React.useState(exampleData);
@@ -73,7 +83,8 @@ function CreateForm() {
         type: -1,
         buttonText: '',
         timeChecked: false,
-        timeOption: 0
+        timeOption: 0,
+        img: ''
       }
     ]);
   };
@@ -104,11 +115,33 @@ function CreateForm() {
     if(option === 2) newData[selectedIndex].timeOption = 13;
     setData(newData);
   };
+  const updateImage = (event) => {
+    console.log("updateImage" + event);
+    let newData = [...data]; 
+    newData[selectedIndex].img = event;
+    setData(newData);
+  }
+  const updateExitChecked = (checked) => {
+    console.log("updateExitChecked " + checked);
+    let newData = [...data]; 
+    newData[selectedIndex].exitChecked = checked;
+    if(!checked) newData[selectedIndex].exitCustomLinkChecked = false;
+    setData(newData);
+  }
+  const updateExitLink = (value) => {
+    let newData = [...data]; 
+    newData[2].exitCustomLinkChecked = value === '사용자 지정';
+    setData(newData);
+    console.log("updateExitLink " + newData[2].exitCustomLinkChecked);
+  }
+  const updateExitCustomLink = (value) => {
+    let newData = [...data]; 
+    newData[2].exitCustomLink = value;
+    setData(newData);
+    console.log("updateExitCustomLink " + newData[2].exitCustomLink);
+  }
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
-    //setType('');
-    //setButtonText('');
-    //setTimeCheck(false);
   };
 
   const types = [
@@ -228,6 +261,8 @@ function CreateForm() {
           <div>
             <div>{data[selectedIndex].buttonText}</div>
             <SetButtonField buttonText={data[selectedIndex].buttonText} setButtonText={updateButtonText} />
+          </div>
+          { selectedIndex !== 2 ?
             <div>
               <div style={{ display: "flex" }}>
                 <div className="menu-sub-text">시간설정</div>
@@ -241,9 +276,16 @@ function CreateForm() {
                   if (data[selectedIndex].timeOption === 7) return 1;
                   if (data[selectedIndex].timeOption === 13) return 2;
                 })()} /> }
+              <Divider />
+
+              <div className="menu-sub-title">이미지삽입</div>
+              <div>
+                <SetImageField img={data[selectedIndex].img} setImage={updateImage} />
+              </div>
             </div>
-          </div>
-          <Divider />
+            :
+            <ExitField data={data[2]} exitCheckedChange={updateExitChecked} exitLinkChange={updateExitLink} exitCustominkChange={updateExitCustomLink} />
+          }
 
         </div>
 
