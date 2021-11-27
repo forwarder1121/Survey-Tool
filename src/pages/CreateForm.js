@@ -22,49 +22,47 @@ function CreateForm() {
       title: '첫화면',
       type: -1,
       buttonText: '',
-      timeChecked: false
+      timeChecked: false,
+      timeOption: 0
     },
     {
       id: 1,
       title: '시간제한화면',
       type: -1,
       buttonText: '',
-      timeChecked: true
+      timeChecked: false,
+      timeOption: 0
     },
     {
       id: 2,
       title: '끝화면',
       type: -1,
       buttonText: '',
-      timeChecked: true
+      timeChecked: false,
+      timeOption: 0
     },
     {
       id: 3,
       title: 'sample1',
       type: -1,
       buttonText: '',
-      timeChecked: true
+      timeChecked: false,
+      timeOption: 0
     },
     {
       id: 4,
       title: 'sample2',
       type: -1,
       buttonText: '',
-      timeChecked: true
+      timeChecked: false,
+      timeOption: 0
     }
   ];
   const [data, setData] = React.useState(exampleData);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   //const [type, setType] = React.useState('');
-  const [buttonText, setButtonText] = React.useState('');
-  const [timeChecked, setTimeCheck] = React.useState(false);
-  const init = () => {
-    console.log("init");
-    //setType('');
-    setButtonText('');
-    setTimeCheck(false);
-    //setArr(exampleData);
-  };
+  //const [buttonText, setButtonText] = React.useState('');
+  //const [timeChecked, setTimeCheck] = React.useState(false);
   const addData = () => {
     console.log("addData");
     setData([
@@ -74,29 +72,43 @@ function CreateForm() {
         title: 'sample'+(data.length-2),
         type: -1,
         buttonText: '',
-        timeChecked: false
+        timeChecked: false,
+        timeOption: 0
       }
     ]);
   };
   const updateType = (type) => {
-    console.log("updateArr");
+    console.log("updateType");
     let newData = [...data]; 
     newData[selectedIndex].type = type;
     setData(newData);
+  };
+  const updateButtonText = (event) => {
+    let newData = [...data]; 
+    newData[selectedIndex].buttonText = event;
+    setData(newData);
+    console.log("updateButtonText" + newData[selectedIndex].buttonText);
   }
+  const updateTimeChecked = (event) => {
+    console.log("updateTimeChecked" + event.target.checked);
+    let newData = [...data]; 
+    newData[selectedIndex].timeChecked = event.target.checked;
+    newData[selectedIndex].timeOption = event.target.checked ? 10 : 0;
+    setData(newData);
+  };
+  const updateTime = (option) => {
+    console.log("updateTime" + option);
+    let newData = [...data]; 
+    if(option === 0) newData[selectedIndex].timeOption = 10;
+    if(option === 1) newData[selectedIndex].timeOption = 7;
+    if(option === 2) newData[selectedIndex].timeOption = 13;
+    setData(newData);
+  };
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
     //setType('');
-    setButtonText('');
-    setTimeCheck(false);
-  };
-  const handleTypeChange = (event) => {
-    //setType(event.target.value);
-    //setType(index);
-  };
-  const handleTimeChecked = (event) => {
-    setTimeCheck(event.target.checked);
-    console.log(event.target.checked);
+    //setButtonText('');
+    //setTimeCheck(false);
   };
 
   const types = [
@@ -112,6 +124,12 @@ function CreateForm() {
     '-----',
     '중간화면'
   ];
+  const timeOptions = [
+    '10초(선택지 5개 기준)',
+    '7초(선택지 4개 미만)',
+    '13초(선택지 6개 이상)'
+  ]
+
   return (
     <div>
       <Header action="create" />
@@ -208,23 +226,21 @@ function CreateForm() {
 
           <div className="menu-sub-title">문항설정</div>
           <div>
-            <div>{buttonText}</div>
-            <SetButtonField buttonText={buttonText} setButtonText={setButtonText} />
+            <div>{data[selectedIndex].buttonText}</div>
+            <SetButtonField buttonText={data[selectedIndex].buttonText} setButtonText={updateButtonText} />
             <div>
               <div style={{ display: "flex" }}>
                 <div className="menu-sub-text">시간설정</div>
                 <div className="menu-right-align">
-                  <Switch color="primary" checked={timeChecked} onChange={handleTimeChecked} />
+                  <Switch color="primary" checked={data[selectedIndex].timeChecked} onChange={updateTimeChecked} />
                 </div>
               </div>
-              { timeChecked && <SelectField items={types} setItem={updateType} disabled={selectedIndex < 3} placeholder={
-            (() => {
-              if (selectedIndex === 0) return (<em>시작화면</em>);
-              if (selectedIndex === 1) return (<em>시간제한 세트 첫페이지</em>);
-              if (selectedIndex === 2) return (<em>끝화면</em>);
-              if (selectedIndex >= 3) return (<em>유형을 선택해주세요</em>);
-            })()
-          } /> }
+              { data[selectedIndex].timeChecked && 
+                <SelectField items={timeOptions} setItem={updateTime} selected={ (() => {
+                  if (data[selectedIndex].timeOption === 10) return 0;
+                  if (data[selectedIndex].timeOption === 7) return 1;
+                  if (data[selectedIndex].timeOption === 13) return 2;
+                })()} /> }
             </div>
           </div>
           <Divider />
