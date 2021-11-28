@@ -14,63 +14,79 @@ import SelectField from '../components/common/SelectField'
 import SetImageField from '../components/formPage/SetImageField'
 import ExitField from '../components/formPage/ExitField'
 import CheckFollowingOption from '../components/common/CheckFollowingOption'
+import DateFickerField from '../components/common/DateFickerField'
 
 function CreateForm() {
 
-  const exampleData = [
-    {
-      id: 0,
-      title: '첫화면',
-      type: -1,
-      buttonText: '',
-      timeChecked: false,
-      timeOption: 0,
-      img: ''
+  const exampleData = {
+    company: {
+      name: '스타트업 company',
+      url: 'www.naver.com'
     },
-    {
-      id: 1,
-      title: '시간제한화면',
-      type: -1,
-      buttonText: '',
-      timeChecked: false,
-      timeOption: 0,
-      img: ''
+    setting: {
+      setTime: false,
+      startTime: '',
+      endTime: '',
+      responseCount: -1,
+      progressBar: false,
+      incomplete_Re: false
     },
-    {
-      id: 2,
-      title: '끝화면',
-      type: -1,
-      buttonText: '',
-      timeChecked: false,
-      timeOption: 0,
-      img: '',
-      exitChecked: false, // 끝화면에만 있음!!!
-      exitCustomLinkChecked: false, // 끝화면에만 있음!!!
-      exitLink: 'www.naver.com', // 끝화면에만 있음 -> api 작업시 여기 빼고 회사 info로 넣기
-      exitCustomLink: '' // 끝화면에만 있음!!!
-    },
-    {
-      id: 3,
-      title: 'sample1',
-      type: -1,
-      buttonText: '',
-      timeChecked: false,
-      timeOption: 0,
-      img: ''
-    },
-    {
-      id: 4,
-      title: 'sample2',
-      type: -1,
-      buttonText: '',
-      timeChecked: false,
-      timeOption: 0,
-      img: ''
-    }
-  ];
-  const [data, setData] = React.useState(exampleData);
+    data: [
+      {
+        id: 0,
+        title: '첫화면',
+        type: -1,
+        buttonText: '',
+        timeChecked: false,
+        timeOption: 0,
+        img: ''
+      },
+      {
+        id: 1,
+        title: '시간제한화면',
+        type: -1,
+        buttonText: '',
+        timeChecked: false,
+        timeOption: 0,
+        img: ''
+      },
+      {
+        id: 2,
+        title: '끝화면',
+        type: -1,
+        buttonText: '',
+        timeChecked: false,
+        timeOption: 0,
+        img: '',
+        exitChecked: false, // 끝화면에만 있음!!!
+        exitCustomLinkChecked: false, // 끝화면에만 있음!!!
+        exitCustomLink: '' // 끝화면에만 있음!!!
+      },
+      {
+        id: 3,
+        title: 'sample1',
+        type: -1,
+        buttonText: '',
+        timeChecked: false,
+        timeOption: 0,
+        img: ''
+      },
+      {
+        id: 4,
+        title: 'sample2',
+        type: -1,
+        buttonText: '',
+        timeChecked: false,
+        timeOption: 0,
+        img: ''
+      }
+    ]
+  };
+  const [data, setData] = React.useState(exampleData.data);
+  const [setting, setSetting] = React.useState(exampleData.setting);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   const [tabIndex, setTabIndex] = React.useState(0);
+  const [date, setDate] = React.useState(new Date(''));
   const addData = () => {
     console.log("addData");
     setData([
@@ -141,6 +157,13 @@ function CreateForm() {
     newData[2].exitCustomLink = value;
     setData(newData);
     console.log("updateExitCustomLink " + newData[2].exitCustomLink);
+  }
+  const updateSetTime = (event) => {
+    console.log(setting + event);
+    let newSetting = {...setting}; 
+    newSetting.setTime = event;
+    setSetting(newSetting);
+    console.log(setting);
   }
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
@@ -280,8 +303,19 @@ function CreateForm() {
           </div>
           :
           <div>
-            설문설정
-          </div>}
+          {/*
+          setting: {
+            setDate: false,
+            startTime: '',
+            endTime: '',
+            responseCount: -1,
+            progressBar: false,
+            incomplete_Re: false
+          }, */}
+          <DateFickerField />
+          <CheckFollowingOption name="시작/종료일 설정" checked={setting.setTime} checkedChange={updateSetTime} 
+            />
+        </div>}
 
       </div>
 
